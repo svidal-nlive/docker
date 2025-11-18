@@ -55,6 +55,8 @@ jobs:
       - name: Copy environment
         run: |
           grep -o '^[^#]*' .env.example > .env
+          # Override with production URL
+          sed -i 's|NEXT_PUBLIC_WEBAPP_URL=.*|NEXT_PUBLIC_WEBAPP_URL=https://cal.vectorhost.net|g' .env
           cat .env >> $GITHUB_ENV
 
       - name: Build and push Docker image
